@@ -8,8 +8,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Australia/Melbourne
-      - APP_URL=http://localhost:6875
-      # - APP_URL=http://bookstack.greyman.space
+      # - APP_URL=http://localhost:6875
+      - APP_URL=http://bookstack.greyman.space
       # docker run -it --rm --entrypoint /bin/bash lscr.io/linuxserver/bookstack:latest appkey
       - APP_KEY=base64:wq5LmgiLTAMaJD3l51P2ZEvrj500t/vDZqdQ4PH7ynY=
       - DB_HOST=mariadb
