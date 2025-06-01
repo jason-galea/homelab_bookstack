@@ -1,0 +1,40 @@
+---
+services:
+  bookstack:
+    ### https://github.com/BookStackApp/BookStack/releases
+    image: lscr.io/linuxserver/bookstack:version-v25.05
+    container_name: bookstack
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Australia/Melbourne
+      - APP_URL=http://localhost:6875
+      # - APP_URL=http://bookstack.greyman.space
+      # docker run -it --rm --entrypoint /bin/bash lscr.io/linuxserver/bookstack:latest appkey
+      - APP_KEY=base64:wq5LmgiLTAMaJD3l51P2ZEvrj500t/vDZqdQ4PH7ynY=
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_DATABASE=bookstack
+      - DB_USERNAME=bookstack
+      - DB_PASSWORD=bookstack8432
+    volumes:
+      - ./bookstack_app_data:/config
+    ports:
+      - 6875:80
+    restart: unless-stopped
+
+  mariadb:
+    ### https://github.com/linuxserver/docker-mariadb/pkgs/container/mariadb/versions
+    image: lscr.io/linuxserver/mariadb:11.4.5
+    container_name: mariadb
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - MYSQL_ROOT_PASSWORD=mysupersecretrootpassword
+      - MYSQL_DATABASE=bookstack
+      - MYSQL_USER=bookstack
+      - MYSQL_PASSWORD=bookstack8432
+    volumes:
+      - ./bookstack_db_data:/config
+    restart: unless-stopped
