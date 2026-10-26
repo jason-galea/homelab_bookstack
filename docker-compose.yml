@@ -30,7 +30,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Etc/UTC
+      - TZ=Australia/Melbourne
       - MYSQL_ROOT_PASSWORD=mysupersecretrootpassword
       - MYSQL_DATABASE=bookstack
       - MYSQL_USER=bookstack
